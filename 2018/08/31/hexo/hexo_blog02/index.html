@@ -147,7 +147,8 @@
 <meta property="og:image" content="https://i.ibb.co/k07jGDT/grbkdj-09.png">
 <meta property="og:image" content="https://i.ibb.co/jR5q04v/grbkdj-11.png">
 <meta property="og:image" content="https://i.ibb.co/GCwytnS/grbkdj-10.png">
-<meta property="og:updated_time" content="2019-09-02T14:00:02.797Z">
+<meta property="og:image" content="https://i.ibb.co/n60XzW7/grbkdj-12.png">
+<meta property="og:updated_time" content="2019-09-02T15:44:30.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人博客搭建-完善">
 <meta name="twitter:description" content="前言:给博客增加一些更高级的功能，例如分页、站内搜索、评论…">
@@ -463,7 +464,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.3k
+                  3.4k
                 </span>
               
 
@@ -625,6 +626,12 @@
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"stylesheet"</span> <span class="attribute">href</span>=<span class="string">"https://billts.site/extra_css/gitment.css"</span>&gt;</span><br><span class="line">&lt;script <span class="attribute">src</span>=<span class="string">"https://billts.site/js/gitment.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <p>(4) 清缓存<code>hexo clean</code>，重新生成<code>hexo g</code>，部署<code>hexo d</code>，然后访问<a href="https://luxiong-github.github.io">username.github.io</a>查看效果<br>(5) 每篇文章都需要登录GitHub账号然后点击初始化</p>
+<h4 id="来必力评论"><a href="#来必力评论" class="headerlink" title="来必力评论"></a>来必力评论</h4><p>(1) 登陆<a href="https://livere.com/" target="_blank" rel="noopener">来必力</a>获取你的<code>livere_uid</code></p>
+<blockquote>
+<p>没有账号需要注册一个<br>注册完点击<code>安装</code>，然后填上博客的相应信息，如图<code>data-uid</code>就是所需要的<code>livere_uid</code><br><img src="https://i.ibb.co/n60XzW7/grbkdj-12.png" alt="来必力配置"><br>(2) 编辑<code>主题配置文件</code>， 编辑<code>livere_uid</code>字段，设置如下:</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">livere_uid:</span> <span class="comment">#your livere_uid</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>(1) <a href="https://cloud.tencent.com/developer/article/1482021" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1482021</a><br>(2) <a href="https://tianbozhang.coding.me/personal-blog-custom.html" target="_blank" rel="noopener">https://tianbozhang.coding.me/personal-blog-custom.html</a><br>(3) <a href="https://ehlxr.me/categories/Hexo/" target="_blank" rel="noopener">https://ehlxr.me/categories/Hexo/</a></p>
 <hr>
@@ -948,7 +955,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#细节完善"><span class="nav-number">1.</span> <span class="nav-text">细节完善</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分页"><span class="nav-number">1.1.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章相关"><span class="nav-number">1.2.</span> <span class="nav-text">文章相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分页-1"><span class="nav-number">1.3.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博文置顶"><span class="nav-number">1.4.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头像圆形旋转"><span class="nav-number">1.5.</span> <span class="nav-text">头像圆形旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面点击小红心"><span class="nav-number">1.6.</span> <span class="nav-text">页面点击小红心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态title崩溃欺骗"><span class="nav-number">1.7.</span> <span class="nav-text">动态title崩溃欺骗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High一下"><span class="nav-number">1.8.</span> <span class="nav-text">High一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方服务集成"><span class="nav-number">2.</span> <span class="nav-text">第三方服务集成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#站内搜索"><span class="nav-number">2.1.</span> <span class="nav-text">站内搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据统计分析"><span class="nav-number">2.2.</span> <span class="nav-text">数据统计分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内容分享服务"><span class="nav-number">2.3.</span> <span class="nav-text">内容分享服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章阅读次数统计"><span class="nav-number">2.4.</span> <span class="nav-text">文章阅读次数统计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitment评论"><span class="nav-number">2.5.</span> <span class="nav-text">Gitment评论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#细节完善"><span class="nav-number">1.</span> <span class="nav-text">细节完善</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分页"><span class="nav-number">1.1.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章相关"><span class="nav-number">1.2.</span> <span class="nav-text">文章相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分页-1"><span class="nav-number">1.3.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博文置顶"><span class="nav-number">1.4.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头像圆形旋转"><span class="nav-number">1.5.</span> <span class="nav-text">头像圆形旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面点击小红心"><span class="nav-number">1.6.</span> <span class="nav-text">页面点击小红心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态title崩溃欺骗"><span class="nav-number">1.7.</span> <span class="nav-text">动态title崩溃欺骗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High一下"><span class="nav-number">1.8.</span> <span class="nav-text">High一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方服务集成"><span class="nav-number">2.</span> <span class="nav-text">第三方服务集成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#站内搜索"><span class="nav-number">2.1.</span> <span class="nav-text">站内搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据统计分析"><span class="nav-number">2.2.</span> <span class="nav-text">数据统计分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内容分享服务"><span class="nav-number">2.3.</span> <span class="nav-text">内容分享服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章阅读次数统计"><span class="nav-number">2.4.</span> <span class="nav-text">文章阅读次数统计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitment评论"><span class="nav-number">2.5.</span> <span class="nav-text">Gitment评论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#来必力评论"><span class="nav-number">2.6.</span> <span class="nav-text">来必力评论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
