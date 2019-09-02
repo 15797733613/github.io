@@ -147,7 +147,7 @@
 <meta property="og:image" content="https://i.ibb.co/k07jGDT/grbkdj-09.png">
 <meta property="og:image" content="https://i.ibb.co/jR5q04v/grbkdj-11.png">
 <meta property="og:image" content="https://i.ibb.co/GCwytnS/grbkdj-10.png">
-<meta property="og:updated_time" content="2019-09-02T05:25:52.821Z">
+<meta property="og:updated_time" content="2019-09-02T14:00:02.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人博客搭建-完善">
 <meta name="twitter:description" content="前言:给博客增加一些更高级的功能，例如分页、站内搜索、评论…">
@@ -463,7 +463,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.9k
+                  3.3k
                 </span>
               
 
@@ -481,7 +481,7 @@
                   <span class="post-meta-item-text">阅读时长  </span>
                 
                 <span title="阅读时长">
-                  14
+                  16
                 </span>
                 
                 <span class="post-meta-item-text">分钟</span>
@@ -609,6 +609,22 @@
 </blockquote>
 <p>(4) 清缓存<code>hexo clean</code>，重新生成<code>hexo g</code>，启动服务<code>hexo s</code>，效果如下：<br><img src="https://i.ibb.co/GCwytnS/grbkdj-10.png" alt="内容分享服务"></p>
 <h4 id="文章阅读次数统计"><a href="#文章阅读次数统计" class="headerlink" title="文章阅读次数统计"></a>文章阅读次数统计</h4><p>(1) 在<a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a>进行对应的配置<br>详细配置参考文章：<a href="https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html#配置LeanCloud" target="_blank" rel="noopener">配置LeanCloud</a><br>(2) 注<code>Class</code>名称必须为<code>Counter</code></p>
+<h4 id="Gitment评论"><a href="#Gitment评论" class="headerlink" title="Gitment评论"></a>Gitment评论</h4><p>(1) Gitment评论搭建参考：<a href="https://sjq597.github.io/2018/05/18/Hexo-使用Gitment评论功能/" target="_blank" rel="noopener">https://sjq597.github.io/2018/05/18/Hexo-使用Gitment评论功能/</a><br>(2) 踩过的坑：</p>
+<ul>
+<li><p>Error: Validation Failed<br>原因：issue的Label有长度限制,对于中文博客来说,中文标题很容易就超过长度限制<br>方案：修改<code>themes/next/layout/_third-party/comments/gitment.swig</code>中的id部分如下:</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var gitment = new &#123;&#123;<span class="attribute">CommentsClass&#125;&#125;(&#123;</span></span><br><span class="line"><span class="attribute">     id</span>: '&#123;&#123; page<span class="variable">.date</span> &#125;&#125;',</span><br><span class="line">     owner: '&#123;&#123; theme<span class="variable">.gitment</span><span class="variable">.github_user</span> &#125;&#125;',</span><br><span class="line">     repo: '&#123;&#123; theme<span class="variable">.gitment</span><span class="variable">.github_repo</span> &#125;&#125;',</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>object ProgressEvent<br>原因：作者的<code>default.css</code>和<code>gitment.browser.js</code>域名用的别人的，现在过期了<br>方案：修改<code>themes/next/layout/_third-party/comments/gitment.swig</code>中对应部分如下:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"&gt; --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;script src="https://imsun.github.io/gitment/dist/gitment.browser.js"&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>注释部分是原来的地址，过期了的，下面的是引用的其他有效地址<br>(3) 汉化：<br>修改<code>themes/next/layout/_third-party/comments/gitment.swig</code>中对应部分如下:</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"stylesheet"</span> <span class="attribute">href</span>=<span class="string">"https://billts.site/extra_css/gitment.css"</span>&gt;</span><br><span class="line">&lt;script <span class="attribute">src</span>=<span class="string">"https://billts.site/js/gitment.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>(4) 清缓存<code>hexo clean</code>，重新生成<code>hexo g</code>，部署<code>hexo d</code>，然后访问<a href="https://luxiong-github.github.io">username.github.io</a>查看效果<br>(5) 每篇文章都需要登录GitHub账号然后点击初始化</p>
 <hr>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>(1) <a href="https://cloud.tencent.com/developer/article/1482021" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1482021</a><br>(2) <a href="https://tianbozhang.coding.me/personal-blog-custom.html" target="_blank" rel="noopener">https://tianbozhang.coding.me/personal-blog-custom.html</a><br>(3) <a href="https://ehlxr.me/categories/Hexo/" target="_blank" rel="noopener">https://ehlxr.me/categories/Hexo/</a></p>
 <hr>
@@ -932,7 +948,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#细节完善"><span class="nav-number">1.</span> <span class="nav-text">细节完善</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分页"><span class="nav-number">1.1.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章相关"><span class="nav-number">1.2.</span> <span class="nav-text">文章相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分页-1"><span class="nav-number">1.3.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博文置顶"><span class="nav-number">1.4.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头像圆形旋转"><span class="nav-number">1.5.</span> <span class="nav-text">头像圆形旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面点击小红心"><span class="nav-number">1.6.</span> <span class="nav-text">页面点击小红心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态title崩溃欺骗"><span class="nav-number">1.7.</span> <span class="nav-text">动态title崩溃欺骗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High一下"><span class="nav-number">1.8.</span> <span class="nav-text">High一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方服务集成"><span class="nav-number">2.</span> <span class="nav-text">第三方服务集成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#站内搜索"><span class="nav-number">2.1.</span> <span class="nav-text">站内搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据统计分析"><span class="nav-number">2.2.</span> <span class="nav-text">数据统计分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内容分享服务"><span class="nav-number">2.3.</span> <span class="nav-text">内容分享服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章阅读次数统计"><span class="nav-number">2.4.</span> <span class="nav-text">文章阅读次数统计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#细节完善"><span class="nav-number">1.</span> <span class="nav-text">细节完善</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分页"><span class="nav-number">1.1.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章相关"><span class="nav-number">1.2.</span> <span class="nav-text">文章相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分页-1"><span class="nav-number">1.3.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博文置顶"><span class="nav-number">1.4.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头像圆形旋转"><span class="nav-number">1.5.</span> <span class="nav-text">头像圆形旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面点击小红心"><span class="nav-number">1.6.</span> <span class="nav-text">页面点击小红心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态title崩溃欺骗"><span class="nav-number">1.7.</span> <span class="nav-text">动态title崩溃欺骗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High一下"><span class="nav-number">1.8.</span> <span class="nav-text">High一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方服务集成"><span class="nav-number">2.</span> <span class="nav-text">第三方服务集成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#站内搜索"><span class="nav-number">2.1.</span> <span class="nav-text">站内搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据统计分析"><span class="nav-number">2.2.</span> <span class="nav-text">数据统计分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内容分享服务"><span class="nav-number">2.3.</span> <span class="nav-text">内容分享服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章阅读次数统计"><span class="nav-number">2.4.</span> <span class="nav-text">文章阅读次数统计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitment评论"><span class="nav-number">2.5.</span> <span class="nav-text">Gitment评论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
