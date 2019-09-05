@@ -46,8 +46,10 @@
 
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
 
 
 
@@ -136,15 +138,18 @@
 
 
 
+<meta name="description" content="照片     图片正在加载中…         (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChil">
 <meta name="keywords" content="Blog,Hexo,Github">
 <meta property="og:type" content="website">
 <meta property="og:title" content="相册">
 <meta property="og:url" content="https://luxiong-github.github.io/photos/index.html">
 <meta property="og:site_name" content="A rookie&#39;s road to growth">
+<meta property="og:description" content="照片     图片正在加载中…         (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChil">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-04T17:13:03.010Z">
+<meta property="og:updated_time" content="2019-09-05T17:50:56.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="相册">
+<meta name="twitter:description" content="照片     图片正在加载中…         (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChil">
 
 
 
@@ -155,7 +160,7 @@
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
@@ -201,9 +206,63 @@
 
 
   
+  
+  
+  
+  <script src="/js/src/photoswipe.min.js?v=5.1.4"></script>
+  <script src="/js/src/photoswipe-ui-default.min.js?v=5.1.4"></script>
+  
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+
+  
+  
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+          <div class="pswp__container">
+              <div class="pswp__item"></div>
+              <div class="pswp__item"></div>
+              <div class="pswp__item"></div>
+          </div>
+          <div class="pswp__ui pswp__ui--hidden">
+              <div class="pswp__top-bar">
+                  <div class="pswp__counter"></div>
+                  <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                  <button class="pswp__button pswp__button--share" title="Share"></button>
+                  <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                  <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                  <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                  <!-- element will get class pswp__preloader--active when preloader is running -->
+                  <div class="pswp__preloader">
+                      <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                          <div class="pswp__preloader__donut"></div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                  <div class="pswp__share-tooltip"></div> 
+              </div>
+              <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+              </button>
+              <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+              </button>
+              <div class="pswp__caption">
+                  <div class="pswp__caption__center"></div>
+              </div>
+          </div>
+      </div>
+    </div>
+  
+  
+
   
   
     
@@ -295,12 +354,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-photos">
+        <li class="menu-item menu-item-相册">
           <a href="/photos/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-photo"></i> <br>
             
-            Photos
+            相册
           </a>
         </li>
       
@@ -383,9 +442,10 @@
       <div class="post-body">
         
         
-          <!-- <link rel="stylesheet" href="./ins.css">
-<link rel="stylesheet" href="./photoswipe.css"> 
-<link rel="stylesheet" href="./default-skin.css"> 
+          <!-- 阿里云oss_begin -->
+<!-- <link rel="stylesheet" href="../lib/album/ins.css">
+<link rel="stylesheet" href="../lib/album/photoswipe.css"> 
+<link rel="stylesheet" href="../lib/album/default-skin/default-skin.css"> 
 <div class="photos-btn-wrap">
     <a class="photos-btn active" href="javascript:void(0)">Photos</a>
 </div>
@@ -401,10 +461,67 @@
       $script.setAttribute('src', path)
     }
     setTimeout(function() {
-        loadScript('./ins.js')
+        // loadScript('../../themes/next/source/lib/album/ins.js')
+        loadScript('../lib/album/ins.js')
     }, 0)
   })()
 </script> -->
+<!-- 阿里云oss_end -->
+
+<!-- lizhiMa_begin -->
+<link rel="stylesheet" href="../lib/album/ins.css">
+<link rel="stylesheet" href="../lib/album/photoswipe.css"> 
+<link rel="stylesheet" href="../lib/album/default-skin/default-skin.css"> 
+<link rel="stylesheet" href="../lib/album/css/style.css">
+<div class="photos-btn-wrap" id="1">
+  <a class="photos-btn active" href="javascript:void(0)" target="_blank" rel="external">照片</a>
+</div>
+<div class="instagram itemscope">
+  <a href="https://luxiong-github.github.io" target="_blank" class="open-ins">图片正在加载中…</a>
+</div>
+<!-- 照片&&视频 -->
+<!-- <div>
+  <ul class="nav nav-tabs nav-justified" style="margin-top:-100px;">
+    <li id="li_album" class="active"><a onclick="to_album()">相册</a></li>
+    <li id="li_vlog"><a onclick="to_vlog()">视频</a></li>
+  </ul>
+</div>
+<div id="2" style="display:none; margin-top:-50px;">
+    <center><b>2017_12_19_学校拍摄</b></center>
+  <center><b>2017_12_19_湛江晚霞</b></center>
+</div> -->
+<!-- 照片&&视频 -->
+
+<script>
+  (function() {
+    var loadScript = function(path) {
+      var $script = document.createElement('script')
+      document.getElementsByTagName('body')[0].appendChild($script)
+      $script.setAttribute('src', path)
+    }
+    setTimeout(function() {
+        loadScript('../lib/album/ins.js')
+    }, 0)
+  })()
+
+  // 照片&&视频
+  // function to_vlog(){
+    //     document.getElementById('1').style.display='none';
+    //     document.getElementById('2').style.display='block';
+    //     document.getElementById('li_vlog').setAttribute('class','active');
+    //     document.getElementById('li_album').setAttribute('class','');
+    // }
+
+  // function to_album(){
+    //     document.getElementById('1').style.display='block';
+    //     document.getElementById('2').style.display='none';
+    //     document.getElementById('li_album').setAttribute('class','active');
+    //     document.getElementById('li_vlog').setAttribute('class','');
+  // }
+  // 照片&&视频
+</script>
+<!-- lizhiMa_end -->
+
         
       </div>
       
@@ -676,8 +793,6 @@ setInterval("createtime()",250);
 
 
 
-  
-
 
   
 
@@ -718,11 +833,6 @@ setInterval("createtime()",250);
 
   
   
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
@@ -750,6 +860,12 @@ setInterval("createtime()",250);
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
+
+
+
+
+<script type="text/javascript" src="/js/src/photoswipe.min.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/photoswipe-ui-default.min.js?v=5.1.4"></script>
 
 
 
