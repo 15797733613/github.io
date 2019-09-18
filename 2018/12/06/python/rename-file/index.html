@@ -151,7 +151,7 @@
 <meta property="og:description" content="前言:主要介绍一下如何利用Python脚本实现给指定的文件数据集按照一定的格式批量重命名，文件不单指图片，其他格式的也可以，此处以图片转换为例，希望能够帮到您(^_−)☆">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.ibb.co/yy673gN/grbkdj-16.jpg">
-<meta property="og:updated_time" content="2019-09-09T01:25:15.083Z">
+<meta property="og:updated_time" content="2019-09-18T07:47:27.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="批量修改文件名称与格式">
 <meta name="twitter:description" content="前言:主要介绍一下如何利用Python脚本实现给指定的文件数据集按照一定的格式批量重命名，文件不单指图片，其他格式的也可以，此处以图片转换为例，希望能够帮到您(^_−)☆">
@@ -286,26 +286,6 @@
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
           </a>
         </li>
       
@@ -515,7 +495,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  496
+                  525
                 </span>
               
 
@@ -562,9 +542,12 @@
 <a id="more"></a>
 
 <h4 id="Python脚本"><a href="#Python脚本" class="headerlink" title="Python脚本"></a>Python脚本</h4><p>(1) 写的是python脚本，需要安装<a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener">python环境</a>，安装教程可自行百度<br>(2) 桌面新建<code>test1.txt</code>文档后将其改为<code>test1.py</code>,打开文档，将以下内容粘贴进去</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf8 -*-</span></span><br><span class="line"> </span><br><span class="line">import os</span><br><span class="line">class BatchRename():</span><br><span class="line">    <span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">    批量重命名文件夹中的图片文件</span></span><br><span class="line"><span class="string">    '</span><span class="string">''</span></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.path = <span class="string">'E:\Pictures\'</span>     <span class="comment">#存放图片的文件夹路径</span></span><br><span class="line">    def rename(self):</span><br><span class="line">        filelist = os.listdir(self.path)</span><br><span class="line">        total_num = len(filelist)</span><br><span class="line">        i = 1</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> filelist:</span><br><span class="line">            <span class="keyword">if</span> item.endswith(<span class="string">'.jpg'</span>):  <span class="comment">#指定选取的图片格式为jpg</span></span><br><span class="line"> </span><br><span class="line">                src = os.path.join(os.path.abspath(self.path), item)</span><br><span class="line">                <span class="comment"># 2018-11-20_bqb00  2018-11-20_hzw00</span></span><br><span class="line">                dst = os.path.join(os.path.abspath(self.path), <span class="string">'2018-11-20_00'</span> + str(i) + <span class="string">'.png'</span>)      <span class="comment">#设置新的图片名称</span></span><br><span class="line">                try:</span><br><span class="line">                    os.rename(src, dst)</span><br><span class="line">                    <span class="built_in">print</span> (<span class="string">"转换图片 %s 成为 %s ..."</span> % (src, dst))</span><br><span class="line">                    i = i + 1	    </span><br><span class="line">                except:</span><br><span class="line">                    <span class="built_in">continue</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"共 %d 张图片重命名和转换成 %d jpgs"</span> % (total_num, i-1))</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    demo = BatchRename()</span><br><span class="line"> </span><br><span class="line">    demo.rename()</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf8 -*-</span></span><br><span class="line"> </span><br><span class="line">import os</span><br><span class="line">class BatchRename():</span><br><span class="line">    <span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">    批量重命名文件夹中的图片文件</span></span><br><span class="line"><span class="string">    '</span><span class="string">''</span></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.path = <span class="string">'E:\Pictures\'</span>     <span class="comment">#存放图片的文件夹路径，注意转义字符(\b、\t等)</span></span><br><span class="line">    def rename(self):</span><br><span class="line">        filelist = os.listdir(self.path)</span><br><span class="line">        total_num = len(filelist)</span><br><span class="line">        i = 1</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> filelist:</span><br><span class="line">            <span class="keyword">if</span> item.endswith(<span class="string">'.jpg'</span>):  <span class="comment">#指定选取的图片格式为jpg</span></span><br><span class="line"> </span><br><span class="line">                src = os.path.join(os.path.abspath(self.path), item)</span><br><span class="line">                <span class="comment"># 2018-11-20_bqb00  2018-11-20_hzw00</span></span><br><span class="line">                dst = os.path.join(os.path.abspath(self.path), <span class="string">'2018-11-20_00'</span> + str(i) + <span class="string">'.png'</span>)      <span class="comment">#设置新的图片名称</span></span><br><span class="line">                try:</span><br><span class="line">                    os.rename(src, dst)</span><br><span class="line">                    <span class="built_in">print</span> (<span class="string">"转换图片 %s 成为 %s ..."</span> % (src, dst))</span><br><span class="line">                    i = i + 1	    </span><br><span class="line">                except:</span><br><span class="line">                    <span class="built_in">continue</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"共 %d 张图片重命名和转换成 %d jpgs"</span> % (total_num, i-1))</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    demo = BatchRename()</span><br><span class="line"> </span><br><span class="line">    demo.rename()</span><br></pre></td></tr></table></figure>
 
-<p>(3) 只要按自己的需求修改脚本中的中文注释部分即可，上述脚本的功能是：将<code>E:\Pictures\</code>目录下的jpg格式的图片批量重命名为<code>2018-11-20_00</code>形式的png图片<br>(4) 在桌面按住<code>shift+鼠标右键</code>，打开打开PowerShell窗口，执行<code>python test1.py</code>命令,出现如下结果：<br><img src="https://i.ibb.co/yy673gN/grbkdj-16.jpg" alt="批量修改图片"></p>
+<p>(3) 只要按自己的需求修改脚本中的中文注释部分即可，上述脚本的功能是：将<code>E:\Pictures\</code>目录下的jpg格式的图片批量重命名为<code>2018-11-20_00</code>形式的png图片</p>
+<blockquote>
+<p>注意路径中的转义字符，例如<code>F:\picture\blog</code>要写成<code>F:\picture\\blog</code><br>(4) 在桌面按住<code>shift+鼠标右键</code>，打开打开PowerShell窗口，执行<code>python test1.py</code>命令,出现如下结果：<br><img src="https://i.ibb.co/yy673gN/grbkdj-16.jpg" alt="批量修改图片"></p>
+</blockquote>
 <h4 id="懒人专用"><a href="#懒人专用" class="headerlink" title="懒人专用"></a>懒人专用</h4><blockquote>
 <p>上面的脚本还有手动输入命令执行，我不想输命令怎么办呢？<br>(1) 在<code>test1.py</code>同级目录(此处为桌面)新建一个<code>test2.txt</code>文档，打开文档，将以下内容粘贴进去：</p>
 </blockquote>
@@ -787,7 +770,7 @@
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives/ || archive">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -798,7 +781,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -809,7 +792,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
