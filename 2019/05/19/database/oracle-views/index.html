@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -53,7 +53,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -105,9 +105,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png?v=5.1.4">
@@ -125,32 +125,35 @@
   <link rel="manifest" href="/images/manifest.json">
 
 
-  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="A rookie's road to growth" type="application/atom+xml" />
+  <meta name="keywords" content="Database,SQL,view,Oracle,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="A rookie's road to growth" type="application/atom+xml">
 
-<meta name="keywords" content="Blog,Hexo,Github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="A rookie&#39;s road to growth">
-<meta property="og:url" content="https://luxiong-github.github.io/404.html">
+
+
+
+
+
+<meta name="description" content="前言:本文主要介绍的是Oracle常用的一些视图，包括：v$session、v$sql、v$sqlarea，后期继续补充…">
+<meta name="keywords" content="Database,SQL,view,Oracle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle常用视图">
+<meta property="og:url" content="https://luxiong-github.github.io/2019/05/19/database/oracle-views/index.html">
 <meta property="og:site_name" content="A rookie&#39;s road to growth">
+<meta property="og:description" content="前言:本文主要介绍的是Oracle常用的一些视图，包括：v$session、v$sql、v$sqlarea，后期继续补充…">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-31T14:24:43.090Z">
+<meta property="og:updated_time" content="2019-09-19T10:02:36.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A rookie&#39;s road to growth">
+<meta name="twitter:title" content="Oracle常用视图">
+<meta name="twitter:description" content="前言:本文主要介绍的是Oracle常用的一些视图，包括：v$session、v$sql、v$sqlarea，后期继续补充…">
 
 
 
@@ -180,7 +183,7 @@
 
 
 
-  <link rel="canonical" href="https://luxiong-github.github.io/404.html"/>
+  <link rel="canonical" href="https://luxiong-github.github.io/2019/05/19/database/oracle-views/">
 
 
 
@@ -196,7 +199,7 @@
   daovoice('update');
   </script>
 
-  <title> | A rookie's road to growth</title>
+  <title>Oracle常用视图 | A rookie's road to growth</title>
   
 
 
@@ -238,7 +241,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">A rookie's road to growth</span>
         <span class="logo-line-after"><i></i></span>
@@ -268,7 +271,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -278,7 +281,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -288,7 +291,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
             
             归档
           </a>
@@ -298,7 +301,7 @@
         <li class="menu-item menu-item-相册">
           <a href="/photos/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-photo"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-photo"></i> <br>
             
             相册
           </a>
@@ -308,7 +311,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -321,7 +324,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -342,9 +345,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -368,51 +369,348 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luxiong-github.github.io/2019/05/19/database/oracle-views/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="卢雄">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A rookie's road to growth">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline"></h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <!DOCTYPE HTML>
-<html>
-
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta http-equiv="content-type" content="text/html;charset=utf-8;">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="robots" content="all">
-  <meta name="robots" content="index,follow">
-  <link rel="stylesheet" type="text/css" href="https://qzone.qq.com/gy/404/style/404style.css">
-</head>
-
-<body>
-  <script type="text/plain" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="/" homepagename="回到我的主页">
-  </script>
-  <script src="https://qzone.qq.com/gy/404/data.js" charset="utf-8"></script>
-  <script src="https://qzone.qq.com/gy/404/page.js" charset="utf-8"></script>
-</body>
-
-</html>
+          <h1 class="post-title" itemprop="name headline">Oracle常用视图</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-19T17:57:12+08:00">
+                2019-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/view/" itemprop="url" rel="index">
+                    <span itemprop="name">view</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/05/19/database/oracle-views/" class="leancloud_visitors" data-flag-title="Oracle常用视图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  979
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  
+                  <span class="post-meta-item-text">阅读时长  </span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+                
+                <span class="post-meta-item-text">分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <blockquote>
+<p>前言:<br>本文主要介绍的是Oracle常用的一些视图，包括：v$session、v$sql、v$sqlarea，后期继续补充…</p>
+</blockquote>
+<a id="more"></a>
+
+
+<h3 id="v-session"><a href="#v-session" class="headerlink" title="v$session"></a>v$session</h3><h4 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h4><p>==v$session主要是查看当前服务器所有session信息==</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sid,	serial#, <span class="keyword">status</span>, username, <span class="function"><span class="keyword">program</span></span>, machine, osuser, logon_time from v$session;</span><br></pre></td></tr></table></figure>
+
+<h4 id="常用字段列名解析："><a href="#常用字段列名解析：" class="headerlink" title="常用字段列名解析："></a>常用字段列名解析：</h4><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">- status：这列用来判断session状态，取值为：Achtive、Inactive、killed</span></span><br><span class="line"><span class="ruby">--   Achtive：	正执行SQL语句(waiting <span class="keyword">for</span>/using a resource)</span></span><br><span class="line"><span class="ruby">--   Inactive：	等待操作(即等待需要执行的SQL语句)</span></span><br><span class="line"><span class="ruby">--   Killed：	被标注为删除</span></span><br><span class="line"><span class="ruby">-- session信息</span></span><br><span class="line"><span class="ruby">--   <span class="symbol">sid:</span>		SESSION标识，常用于连接其它列</span></span><br><span class="line"><span class="ruby">--   SERIAL<span class="comment">#：	如果某个SID又被其它的session使用的话则此数值自增加(当一个SESSION结束，另一个SESSION开始并使用了同一个SID)</span></span></span><br><span class="line"><span class="ruby">--   AUDSID：	审查session ID唯一性，确认它通常也用于当寻找并行查询模式</span></span><br><span class="line"><span class="ruby">--   USERNAME：当前session在oracle中的用户名</span></span><br><span class="line"><span class="ruby">-- client信息</span></span><br><span class="line"><span class="ruby">--   OSUSER：	客户端操作系统用户名</span></span><br><span class="line"><span class="ruby">--   MACHINE：	客户端执行的机器</span></span><br><span class="line"><span class="ruby">--   TERMINAL：	客户端运行的终端</span></span><br><span class="line"><span class="ruby">--   PROCESS：	客户端进程的ID</span></span><br><span class="line"><span class="ruby">--   PROGRAM：	客户端执行的客户端程序</span></span><br><span class="line"><span class="ruby">-- Application信息</span></span><br><span class="line"><span class="ruby">--   CLIENT_INFO：  DBMS_APPLICATION_INFO中设置</span></span><br><span class="line"><span class="ruby">--   ACTION：		DBMS_APPLICATION_INFO中设置</span></span><br><span class="line"><span class="ruby">--   MODULE：		DBMS_APPLICATION_INFO中设置</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="v-sql"><a href="#v-sql" class="headerlink" title="v$sql"></a>v$sql</h3><h4 id="使用示例-1"><a href="#使用示例-1" class="headerlink" title="使用示例"></a>使用示例</h4><p>==v$sql主要是用来分析SQL语句使用资源情况==</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> v$<span class="keyword">sql</span> <span class="keyword">WHERE</span> sql_fulltest <span class="keyword">LIKE</span> <span class="string">'%2019-08-21%'</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="常用字段列名解析：-1"><a href="#常用字段列名解析：-1" class="headerlink" title="常用字段列名解析："></a>常用字段列名解析：</h4><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">- SQL_TEXT           /<span class="regexp">/当前正在执行的游标的sql文本的前1000个字符</span></span></span><br><span class="line"><span class="ruby">-- SQL_FULLTEXT       /<span class="regexp">/CLOB类型 整个sql文本，不用借助于V$SQL_TEXT视图来查看整个文本</span></span></span><br><span class="line"><span class="ruby">-- SQL_ID           /<span class="regexp">/库缓存中的SQL父游标的标志</span></span></span><br><span class="line"><span class="ruby">-- SHARABLE_MEM           /<span class="regexp">/子游标使用的共享内存的大小,bytes</span></span></span><br><span class="line"><span class="ruby">-- PERSISTENT_MEM           /<span class="regexp">/子游标生存时间中使用的固定内存的总量,bytes</span></span></span><br><span class="line"><span class="ruby">-- RUNTIME_MEM           /<span class="regexp">/在子游标执行过程中需要的固定内存大小，bytes</span></span></span><br><span class="line"><span class="ruby">-- SORTS           /<span class="regexp">/子游标发生的排序数量</span></span></span><br><span class="line"><span class="ruby">-- LOADED_VERSIONS          /<span class="regexp">/ 显示上下文堆是否载入，1是，0否</span></span></span><br><span class="line"><span class="ruby">-- USERS_OPENING          /<span class="regexp">/ 执行这个sql的用户数</span></span></span><br><span class="line"><span class="ruby">-- FETCHES          /<span class="regexp">/ sql取数据的次数</span></span></span><br><span class="line"><span class="ruby">-- EXECUTIONS           /<span class="regexp">/自从被载入共享池后，sql执行的次数 </span></span></span><br><span class="line"><span class="ruby">-- FIRST_LOAD_TIME          /<span class="regexp">/ 父游标产生的时间戳</span></span></span><br><span class="line"><span class="ruby">-- PARSE_CALLS           /<span class="regexp">/解析调用的次数 </span></span></span><br><span class="line"><span class="ruby">-- DISK_CALLS             /<span class="regexp">/读磁盘的次数</span></span></span><br><span class="line"><span class="ruby">-- DIRECT_WRITES           /<span class="regexp">/直接写的次数</span></span></span><br><span class="line"><span class="ruby">-- BUFFER_GETS           /<span class="regexp">/直接从buffer中得到数据的次数</span></span></span><br><span class="line"><span class="ruby">-- APPLICATION_WAIT_TIME          /<span class="regexp">/ 应用等待时间，毫秒</span></span></span><br><span class="line"><span class="ruby">-- CONCURRENCY_WAIT_TIME           /<span class="regexp">/并发等待时间，毫秒</span></span></span><br><span class="line"><span class="ruby">-- USER_IO_WAIT_TIME           /<span class="regexp">/用户IO等待时间</span></span></span><br><span class="line"><span class="ruby">-- ROWS_PROCESSED SQL           /<span class="regexp">/解析sql返回的总行数</span></span></span><br><span class="line"><span class="ruby">-- OPTIMIZER_MODE           /<span class="regexp">/优化器模式</span></span></span><br><span class="line"><span class="ruby">-- OPTIMIZER_COST           /<span class="regexp">/优化器对于sql给出的成本</span></span></span><br><span class="line"><span class="ruby">-- PARSING_USER_ID           /<span class="regexp">/第一个创建这个子游标的用户id</span></span></span><br><span class="line"><span class="ruby">-- HASH_VALUES           /<span class="regexp">/解析产生的哈希值</span></span></span><br><span class="line"><span class="ruby">-- CHILD_NUMBER           /<span class="regexp">/该子游标的数量</span></span></span><br><span class="line"><span class="ruby">-- SERVICE           /<span class="regexp">/服务名</span></span></span><br><span class="line"><span class="ruby">-- CPU_TIME           /<span class="regexp">/该子游标解析，执行和获取数据使用的CPU时间，毫秒</span></span></span><br><span class="line"><span class="ruby">-- ELAPSED_TIME           /<span class="regexp">/sql的执行时间，毫秒</span></span></span><br><span class="line"><span class="ruby">-- INVALIDATIONS           /<span class="regexp">/该子游标的无效次数</span></span></span><br><span class="line"><span class="ruby">-- MODULE       /<span class="regexp">/第一次解析该语句时,通过DBMS_APPLICAITON_INFO.SET_ACTION设置的模块名</span></span></span><br><span class="line"><span class="ruby">-- ACTION      /<span class="regexp">/第一次解析该语句时,通过DBMS_APPLICAITON_INFO.SET_ACTION设置的动作名 </span></span></span><br><span class="line"><span class="ruby">-- IS_OBSOLETE           /<span class="regexp">/标记该子游标过期与否，当子游标过大时会发生这种情况</span></span></span><br><span class="line"><span class="ruby">-- is_bind_sensitive           /<span class="regexp">/不仅指出是否使用绑定变量窥测来生成执行计划，而且指出这个执行计划是否依赖于窥测到的值。如果是，这个字段会被设置为Y，否则会被设置为N。</span></span></span><br><span class="line"><span class="ruby">-- is_bind_aware           /<span class="regexp">/表明游标是否使用了扩展的游标共享。如果是，这个字段会被设置为Y，如果不是，这个字段会被设置为N。如果是设置为N，这个游标将被废弃，不再可用。</span></span></span><br><span class="line"><span class="ruby">-- is_shareable           /<span class="regexp">/表明游标能否被共享。如果可以，这个字段会被设置为Y，否则，会被设置为N。如果被设置为N，这个游标将被废弃，不再可用。</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="v-sqlarea"><a href="#v-sqlarea" class="headerlink" title="v$sqlarea"></a>v$sqlarea</h3><h4 id="使用示例-2"><a href="#使用示例-2" class="headerlink" title="使用示例"></a>使用示例</h4><p>==v$sqlarea和v$sql基本一致，不同的是V$SQLAREA是在父游标级别上统计的sql信息，v$sql的汇总表，进行了group by hash_value,sql_id的汇总==</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v$sqlarea <span class="keyword">WHERE</span> sql_fulltest <span class="keyword">LIKE</span> <span class="string">'%2019-08-21%'</span>;</span><br></pre></td></tr></table></figure>
+
+
+        <div style="text-align:center;color: #ccc;font-size:14px;">—— 感谢您的阅读 ( ﾟ∀ﾟ) 有什么疑问可以在下方留言哦 ——</div>
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.svg" alt="卢雄 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.svg" alt="卢雄 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    卢雄
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://luxiong-github.github.io/2019/05/19/database/oracle-views/" title="Oracle常用视图">https://luxiong-github.github.io/2019/05/19/database/oracle-views/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tags/Database/" rel="tag"><i class="fa fa-tag"> </i> Database</a>
+          
+            
+            <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"> </i> SQL</a>
+          
+            
+            <a href="/tags/view/" rel="tag"><i class="fa fa-tag"> </i> view</a>
+          
+            
+            <a href="/tags/Oracle/" rel="tag"><i class="fa fa-tag"> </i> Oracle</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/database/db-index/" rel="next" title="关于索引的sql语句优化之降龙十八掌">
+                <i class="fa fa-chevron-left"></i> 关于索引的sql语句优化之降龙十八掌
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/04/weaver/question-tidy/" rel="prev" title="QC问题流程梳理">
+                QC问题流程梳理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
   </div>
 
 
@@ -449,13 +747,20 @@
       
       
         
+          <ul class="sidebar-nav motion-element">
+            <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+              文章目录
+            </li>
+            <li class="sidebar-nav-overview" data-target="site-overview">
+              站点概览
+            </li>
+          </ul>
+        
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <img class="site-author-image" itemprop="image"
-                 src="/images/avatar.svg"
-                 alt="卢雄" />
+            <img class="site-author-image" itemprop="image" src="/images/avatar.svg" alt="卢雄">
             <p class="site-author-name" itemprop="name">卢雄</p>
              
                 <p class="site-description motion-element" itemprop="description">你不能等待别人来安排你的人生,自己想要的,自己争取...</p>
@@ -576,6 +881,22 @@
         </section>
         
           
+          <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+    
+                
+                  
+                
+    
+                
+                  <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-session"><span class="nav-number">1.</span> <span class="nav-text">v$session</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用示例"><span class="nav-number">1.1.</span> <span class="nav-text">使用示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用字段列名解析："><span class="nav-number">1.2.</span> <span class="nav-text">常用字段列名解析：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-sql"><span class="nav-number">2.</span> <span class="nav-text">v$sql</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用示例-1"><span class="nav-number">2.1.</span> <span class="nav-text">使用示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用字段列名解析：-1"><span class="nav-number">2.2.</span> <span class="nav-text">常用字段列名解析：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-sqlarea"><span class="nav-number">3.</span> <span class="nav-text">v$sqlarea</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用示例-2"><span class="nav-number">3.1.</span> <span class="nav-text">使用示例</span></a></li></ol></li></ol></div>
+                
+    
+              </div>
+            </section>
+          <!--/noindex-->
+          
         
     
         
@@ -591,7 +912,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" >
+  <span class="with-love">
     <i class="fa fa-user"></i>
     
     

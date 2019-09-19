@@ -150,7 +150,7 @@
 <meta property="og:site_name" content="A rookie&#39;s road to growth">
 <meta property="og:description" content="前言:本文主要介绍了基于索引的SQL语句优化的降龙十八掌">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-18T16:13:28.669Z">
+<meta property="og:updated_time" content="2019-09-19T09:13:00.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于索引的sql语句优化之降龙十八掌">
 <meta name="twitter:description" content="前言:本文主要介绍了基于索引的SQL语句优化的降龙十八掌">
@@ -493,7 +493,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.8k
+                  5k
                 </span>
               
 
@@ -511,7 +511,7 @@
                   <span class="post-meta-item-text">阅读时长  </span>
                 
                 <span title="阅读时长">
-                  10
+                  18
                 </span>
                 
                 <span class="post-meta-item-text">分钟</span>
@@ -597,6 +597,46 @@
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="comment">/*+  INDEX(SERVICEINFO,IX_S_DISPOSALCOURSEFLAG)  */</span>  *  <span class="keyword">from</span>  serviceinfo <span class="keyword">where</span> DisposalCourseFlag=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
 <p>请注意，这种方法会加大代码维护的难度，而且该字段上索引的名称被改变之后，必须要同步所有指定索引的<code>HINT</code>代码，否则<code>HINT</code>提示将被ORACLE忽略掉。  </p>
+<h4 id="第九掌-屏蔽无用索引"><a href="#第九掌-屏蔽无用索引" class="headerlink" title="第九掌 屏蔽无用索引"></a>第九掌 屏蔽无用索引</h4><p>继续上面8的例子，由于实际查询中，还有涉及到<code>DisposalCourseFlag=6</code>的查询，而此时如果用上该字段上的索引，将是非常不明智的，效率也极低。因此这种情况下，我们需要用特殊的方法屏蔽该索引，以便ORACLE选择其他字段上的索引。比如，如果字段为数值型的就在表达式的字段名后，添加<code>“+ 0”</code>，为字符型的就并上空串：<code>“||&quot;&quot;”</code> 如： </p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span>  serviceinfo <span class="keyword">where</span> DisposalCourseFlag+ <span class="number">0</span> = <span class="number">6</span> <span class="keyword">and</span> workNo =  <span class="string">'36'</span></span><br></pre></td></tr></table></figure>
+
+<p>不过，不要把该用的索引屏蔽掉了，否则同样会产生低效率的全表扫描。</p>
+<h4 id="第十掌-分解复杂查询，用常量代替变量"><a href="#第十掌-分解复杂查询，用常量代替变量" class="headerlink" title="第十掌 分解复杂查询，用常量代替变量"></a>第十掌 分解复杂查询，用常量代替变量</h4><p>对于复杂的Where条件组合，<code>where</code>中含有多个带索引的字段，考虑用IF语句分情况进行讨论；同时，去掉不必要的外来参数条件，减低复杂度，以便在不同情况下用不同字段上的索引。       继续上面9的例子，对于包含</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">where</span> (DisposalCourseFlag &lt; v_DisPosalCourseFlag) <span class="keyword">or</span> (v_DisPosalCourseFlag is <span class="built_in">null</span>) <span class="keyword">and</span>....</span><br></pre></td></tr></table></figure>
+
+<p>的查询，(这里<code>v_DisPosalCourseFlag</code>为一个输入变量，取值范围可能为<code>[NULL，0，1，2，3，4，5，6，7])</code>，可以考虑分情况用IF语句进行讨论，类似： </p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">IF</span> v_DisPosalCourseFlag =<span class="number">1</span> <span class="keyword">THEN</span> <span class="keyword">Where</span> DisposalCourseFlag = <span class="number">1</span> <span class="keyword">and</span> .... ELSIF v_DisPosalCourseFlag =<span class="number">2</span> <span class="keyword">THEN</span> <span class="keyword">Where</span> DisposalCourseFlag = <span class="number">2</span> <span class="keyword">and</span> ....</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#### 第十一掌 like子句尽量前端匹配  </span></span><br><span class="line">因为<span class="keyword">like</span>参数使用的非常频繁，因此如果能够对<span class="keyword">like</span>子句使用索引，将很高的提高查询的效率。  </span><br><span class="line">*例<span class="number">6</span>*：</span><br></pre></td></tr></table></figure>
+
+<p>select * from city where name like ‘%S%’</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以上查询的执行计划用了全表扫描（<span class="keyword">TABLE</span> ACCESS <span class="comment">FULL</span>），如果能够修改为：</span><br></pre></td></tr></table></figure>
+
+<p>select * from city where name like ‘S%’</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">那么查询的执行计划将会变成（`INDEX RANGE SCAN`），成功的利用了`name`字段的索引。这意味着Oracle SQL优化器会识别出用于索引的like子句，只要该查询的匹配端是具体值。因此我们在做like查询时，应该尽量使查询的匹配端是具体值，即使用`like ‘S%’`。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 第十二掌 用Case语句合并多重扫描   </span><br><span class="line">我们常常必须基于多组数据表计算不同的聚集。例如下例通过三个独立查询： </span><br><span class="line">*例<span class="number">8</span>*：</span><br><span class="line"><span class="number">1</span>）</span><br></pre></td></tr></table></figure>
+
+<p>select count(<em>) from emp where sal&lt;1000;<br>select count(</em>) from emp where sal between 1000 and 5000;<br>select count(*) from emp where sal&gt;5000; </p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这样我们需要进行三次全表查询，但是如果我们使用<span class="keyword">case</span>语句：</span><br></pre></td></tr></table></figure>
+
+<p>select  count (sale when sal &lt;1000 then 1 else null end) count_poor, count (sale when between 1000 and 5000 then 1 else null end) count_blue_collar, count (sale when sal &gt;5000 then 1 else null end) count_poor from emp; </p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这样查询的结果一样，但是执行计划只进行了一次全表查询。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 第十三掌 使用nls_date_format       </span><br><span class="line">*例<span class="number">9</span>*：</span><br></pre></td></tr></table></figure>
+
+<p>select * from record where  to_char(ActionTime,’mm’)=’12’      </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这个查询的执行计划将是全表查询，如果我们改变`nls_date_format， SQL&gt;alert session <span class="builtin-name">set</span> <span class="attribute">nls_date_formate</span>=’MM’;`现在重新修改上面的查询：</span><br></pre></td></tr></table></figure>
+
+<p>select * from record where  ActionTime=’12’      </p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这样就能使用`actiontime`上的索引了，它的执行计划将是（`INDEX RANGE SCAN`）。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 第十四掌 使用基于函数的索引       </span><br><span class="line">前面谈到任何对列的操作都可能导致全表扫描，例如：</span><br></pre></td></tr></table></figure>
+
+<p>select * from emp where substr(ename,1,2)=’SM’;      </p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">但是这种查询在客服系统又经常使用，我们可以创建一个带有<span class="keyword">substr</span>函数的基于函数的索引，</span><br></pre></td></tr></table></figure>
+
+<p>create index emp_ename_substr on eemp ( substr(ename,1,2) );      </p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这样在执行上面的查询语句时，这个基于函数的索引将排上用场，执行计划将是（`INDEX RANGE SCAN`）。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 第十五掌 基于函数的索引要求等式匹配  </span><br><span class="line">上面的例子中，我们创建了基于函数的索引，但是如果执行下面的查询：</span><br></pre></td></tr></table></figure>
+
+<p>select * from emp where substr(ename,1,1)=’S’<br>```<br>得到的执行计划将还是（<code>TABLE ACCESS FULL</code>），因为只有当数据列能够等式匹配时，基于函数的索引才能生效，这样对于这种索引的计划和维护的要求都很高。请注意，向表中添加索引是非常危险的操作，因为这将导致许多查询执行计划的变更。然而，如果我们使用基于函数的索引就不会产生这样的问题，因为Oracle只有在查询使用了匹配的内置函数时才会使用这种类型的索引。</p>
+<h4 id="第十六掌-使用分区索引"><a href="#第十六掌-使用分区索引" class="headerlink" title="第十六掌 使用分区索引"></a>第十六掌 使用分区索引</h4><p>在用分析命令对分区索引进行分析时，每一个分区的数据值的范围信息会放入Oracle的数据字典中。Oracle可以利用这个信息来提取出那些只与SQL查询相关的数据分区。<br>例如，假设你已经定义了一个分区索引，并且某个SQL语句需要在一个索引分区中进行一次索引扫描。Oracle会仅仅访问这个索引分区，而且会在这个分区上调用一个此索引范围的快速全扫描。因为不需要访问整个索引，所以提高了查询的速度。  </p>
+<h4 id="第十七掌-使用位图索引"><a href="#第十七掌-使用位图索引" class="headerlink" title="第十七掌 使用位图索引"></a>第十七掌 使用位图索引</h4><p>位图索引可以从本质上提高使用了小于<code>1000</code>个唯一数据值的数据列的查询速度，因为在位图索引中进行的检索是在<code>RAM</code>中完成的，而且也总是比传统的B树索引的速度要快。对于那些少于<code>1000</code>个唯一数据值的数据列建立位图索引，可以使执行效率更快。</p>
+<h4 id="第十八掌-决定使用全表扫描还是使用索引"><a href="#第十八掌-决定使用全表扫描还是使用索引" class="headerlink" title="第十八掌 决定使用全表扫描还是使用索引"></a>第十八掌 决定使用全表扫描还是使用索引</h4><p>和所有的秘笈一样，最后一招都会又回到起点，最后我们来讨论一下是否需要建立索引，也许进行全表扫描更快。在大多数情况下，全表扫描可能会导致更多的物理磁盘输入输出，但是全表扫描有时又可能会因为高度并行化的存在而执行的更快。如果查询的表完全没有顺序，那么一个要返回记录数小于<code>10％</code>的查询可能会读取表中大部分的数据块，这样使用索引会使查询效率提高很多。但是如果表非常有顺序，那么如果查询的记录数大于<code>40％</code>时，可能使用全表扫描更快。因此，有一个索引范围扫描的总体原则是：<br>1) 对于原始排序的表:仅读取少于表记录数40％的查询应该使用索引范围扫描。反之，读取记录数目多于表记录数的40％的查询应该使用全表扫描。<br>2) 对于未排序的表:仅读取少于表记录数7％的查询应该使用索引范围扫描。反之，读取记录数目多于表记录数的7％的查询应该使用全表扫描。</p>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上的招式，是完全可以相互结合同时运用的。而且各种方法之间相互影响，紧密联系。这种联系既存在一致性，也可能带来冲突，当冲突发生时，需要根据实际情况进行选择，没有固定的模式。最后决定SQL优化功力的因素就是对ORACLE内功的掌握程度了。<br>另外，值得注意的是：随着时间的推移和数据的累计与变化，ORACLE对SQL语句的执行计划也会改变，比如：基于代价的优化方法，随着数据量的增大，优化器可能错误的不选择索引而采用全表扫描。这种情况可能是因为统计信息已经过时，在数据量变化很大后没有及时分析表；<br>但如果对表进行分析之后，仍然没有用上合理的索引，那么就有必要对SQL语句用<code>HINT</code>提示，强制用合理的索引。<br>但这种<code>HINT</code>提示也不能滥用，因为这种方法过于复杂，缺乏通用性和应变能力，同时也增加了维护上的代价；相对来说，基于函数右移、去掉<code>“IN ，OR ，&lt;&gt; ，IS NOT NULL ”</code>、分解复杂的SQL语句等等方法，却是“放之四海皆准”的，可以放心大胆的使用。<br>同时，优化也不是“一劳永逸”的，必须随着情况的改变进行相应的调整。<br>当数据库设计发生变化，包括更改表结构：字段和索引的增加、删除或改名等；业务逻辑发生变化：如查询方式、取值范围发生改变等等。<br>在这种情况下，也必须对原有的优化进行调整，以适应效率上的需求。</p>
 
         <div style="text-align:center;color: #ccc;font-size:14px;">—— 感谢您的阅读 ( ﾟ∀ﾟ) 有什么疑问可以在下方留言哦 ——</div>
       
@@ -692,8 +732,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/04/weaver/question-tidy/" rel="prev" title="QC问题流程梳理">
-                QC问题流程梳理 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/19/database/oracle-views/" rel="prev" title="Oracle常用视图">
+                Oracle常用视图 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -812,7 +852,7 @@
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives/">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -823,7 +863,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -834,7 +874,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -931,7 +971,7 @@
                 
     
                 
-                  <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总纲——建立必要的索引"><span class="nav-number">2.</span> <span class="nav-text">总纲——建立必要的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#降龙十八掌"><span class="nav-number">3.</span> <span class="nav-text">降龙十八掌</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一掌-避免对列的操作"><span class="nav-number">3.1.</span> <span class="nav-text">第一掌 避免对列的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二掌-避免不必要的类型转换"><span class="nav-number">3.2.</span> <span class="nav-text">第二掌 避免不必要的类型转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三掌-增加查询的范围限制"><span class="nav-number">3.3.</span> <span class="nav-text">第三掌 增加查询的范围限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四掌-尽量去掉”IN”、”OR”"><span class="nav-number">3.4.</span> <span class="nav-text">第四掌 尽量去掉”IN”、”OR”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五掌-尽量去掉-“-lt-gt-”"><span class="nav-number">3.5.</span> <span class="nav-text">第五掌 尽量去掉 “&lt;&gt;”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第六掌-去掉Where子句中的IS-NULL和IS-NOT-NULL"><span class="nav-number">3.6.</span> <span class="nav-text">第六掌 去掉Where子句中的IS NULL和IS NOT NULL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第七掌-索引提高数据分布不均匀时查询效率"><span class="nav-number">3.7.</span> <span class="nav-text">第七掌 索引提高数据分布不均匀时查询效率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第八掌-利用HINT强制指定索引"><span class="nav-number">3.8.</span> <span class="nav-text">第八掌 利用HINT强制指定索引</span></a></li></ol></li></ol></div>
+                  <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总纲——建立必要的索引"><span class="nav-number">2.</span> <span class="nav-text">总纲——建立必要的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#降龙十八掌"><span class="nav-number">3.</span> <span class="nav-text">降龙十八掌</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一掌-避免对列的操作"><span class="nav-number">3.1.</span> <span class="nav-text">第一掌 避免对列的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二掌-避免不必要的类型转换"><span class="nav-number">3.2.</span> <span class="nav-text">第二掌 避免不必要的类型转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三掌-增加查询的范围限制"><span class="nav-number">3.3.</span> <span class="nav-text">第三掌 增加查询的范围限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四掌-尽量去掉”IN”、”OR”"><span class="nav-number">3.4.</span> <span class="nav-text">第四掌 尽量去掉”IN”、”OR”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五掌-尽量去掉-“-lt-gt-”"><span class="nav-number">3.5.</span> <span class="nav-text">第五掌 尽量去掉 “&lt;&gt;”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第六掌-去掉Where子句中的IS-NULL和IS-NOT-NULL"><span class="nav-number">3.6.</span> <span class="nav-text">第六掌 去掉Where子句中的IS NULL和IS NOT NULL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第七掌-索引提高数据分布不均匀时查询效率"><span class="nav-number">3.7.</span> <span class="nav-text">第七掌 索引提高数据分布不均匀时查询效率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第八掌-利用HINT强制指定索引"><span class="nav-number">3.8.</span> <span class="nav-text">第八掌 利用HINT强制指定索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第九掌-屏蔽无用索引"><span class="nav-number">3.9.</span> <span class="nav-text">第九掌 屏蔽无用索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第十掌-分解复杂查询，用常量代替变量"><span class="nav-number">3.10.</span> <span class="nav-text">第十掌 分解复杂查询，用常量代替变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第十六掌-使用分区索引"><span class="nav-number">3.11.</span> <span class="nav-text">第十六掌 使用分区索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第十七掌-使用位图索引"><span class="nav-number">3.12.</span> <span class="nav-text">第十七掌 使用位图索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第十八掌-决定使用全表扫描还是使用索引"><span class="nav-number">3.13.</span> <span class="nav-text">第十八掌 决定使用全表扫描还是使用索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
                 
     
               </div>
