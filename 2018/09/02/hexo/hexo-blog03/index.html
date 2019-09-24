@@ -151,7 +151,7 @@
 <meta property="og:description" content="前言:给博客增加一些更高级的功能，例如分页、站内搜索、评论…">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.ibb.co/QXTNR0c/grbkdj-13.png">
-<meta property="og:updated_time" content="2019-09-05T02:33:47.098Z">
+<meta property="og:updated_time" content="2019-09-24T16:30:37.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人博客搭建-加强">
 <meta name="twitter:description" content="前言:给博客增加一些更高级的功能，例如分页、站内搜索、评论…">
@@ -484,7 +484,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  882
+                  1.2k
                 </span>
               
 
@@ -502,7 +502,7 @@
                   <span class="post-meta-item-text">阅读时长  </span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
                 
                 <span class="post-meta-item-text">分钟</span>
@@ -558,19 +558,31 @@ http://www.zhaojun.im/hexo-valine-admin/
 https://deserts.io/diy-a-comment-system/ -->
 
 <hr>
-<!-- ### hexo管理插件
-#### hexo-admin
-参考：  
-（1）https://github.com/jaredly/hexo-admin  
-（2）https://blog.csdn.net/dataiyangu/article/details/83066586
+<h3 id="hexo管理插件"><a href="#hexo管理插件" class="headerlink" title="hexo管理插件"></a>hexo管理插件</h3><h4 id="hexo-admin"><a href="#hexo-admin" class="headerlink" title="hexo-admin"></a>hexo-admin</h4><p>(1) 安装插件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> <span class="comment">--save hexo-admin</span></span><br></pre></td></tr></table></figure>
 
---- -->
+<p>(2) 测试<br><code>hexo s</code>启动服务，访问<code>http://localhost:4000/admin/</code>，就可以看到管理页面</p>
+<h4 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h4><ul>
+<li>Pages：新加 page</li>
+<li>Posts：新加或删除 post；双击一个 post，你可以编辑，预览，新增修改 tags、categories，选择发布或不发布</li>
+<li>Settings：一些配置</li>
+<li>Deploy：可以直接部署到 github<br>(1) 密码保护<br>打开<code>Setting</code>，点击<code>Setup authentification here</code>输入用户名，密码，密钥，下面会自动生成配置文件，复制加在hexo根目录下的<code>_config.yml</code>中：<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a<span class="built_in"> secret </span>something</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<p>(2) 发布文章<br>进入后台之后点击<code>Deploy</code>，里面的<code>Deploy</code>按钮是用来执行发布脚本的，所以我们先在博客根目录下新建个目录脚本文件<code>hexo-deploy.bat</code>(window系统，Linux系统可参考<a href="https://github.com/jaredly/hexo-admin/issues/70" target="_blank" rel="noopener">链接</a>)，里面写下下面代码然后保存:</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g -d</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在hexo根目录下的<code>_config.yml</code>中的admin下添加：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">admin</span>:</span><br><span class="line">  <span class="attribute">username</span>: myfavoritename</span><br><span class="line">  <span class="attribute">password_hash</span>: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  <span class="attribute">secret</span>: a secret something</span><br><span class="line">  <span class="attribute">deployCommand</span>: <span class="string">'./hexo-deploy.bat'</span>  #新增参数</span><br></pre></td></tr></table></figure>
+
+<p>点击<code>Deploy</code>就会执行这个命令并提交到<code>GitHub</code>上</p>
+<p>参考：<br>(1) <a href="https://github.com/jaredly/hexo-admin" target="_blank" rel="noopener">https://github.com/jaredly/hexo-admin</a><br>(2) <a href="https://blog.csdn.net/dataiyangu/article/details/83066586" target="_blank" rel="noopener">https://blog.csdn.net/dataiyangu/article/details/83066586</a><br>(3) <a href="https://albenw.github.io/posts/4ffa5bc6/" target="_blank" rel="noopener">https://albenw.github.io/posts/4ffa5bc6/</a><br>(4) <a href="https://segmentfault.com/a/1190000018488921" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018488921</a></p>
+<hr>
 <h3 id="相册"><a href="#相册" class="headerlink" title="相册"></a>相册</h3><blockquote>
 <p>注：Next主题默认是不含有相册页面的,如果想添加此页面需自行编写</p>
 </blockquote>
-<h4 id="相册和视频导航栏"><a href="#相册和视频导航栏" class="headerlink" title="相册和视频导航栏"></a>相册和视频导航栏</h4><p>LTAIC4oDgY9ZCa0n<br>0nEgVvA7KLV7QUfV1vMgjF4U4JvxM2</p>
-<h4 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h4><h4 id="博客相册页面"><a href="#博客相册页面" class="headerlink" title="博客相册页面"></a>博客相册页面</h4><h4 id="图片的处理"><a href="#图片的处理" class="headerlink" title="图片的处理"></a>图片的处理</h4><hr>
+<h4 id="相册和视频导航栏"><a href="#相册和视频导航栏" class="headerlink" title="相册和视频导航栏"></a>相册和视频导航栏</h4><h4 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h4><h4 id="博客相册页面"><a href="#博客相册页面" class="headerlink" title="博客相册页面"></a>博客相册页面</h4><h4 id="图片的处理"><a href="#图片的处理" class="headerlink" title="图片的处理"></a>图片的处理</h4><hr>
 <h3 id="小功能集合"><a href="#小功能集合" class="headerlink" title="小功能集合"></a>小功能集合</h3><h4 id="文章链接唯一化"><a href="#文章链接唯一化" class="headerlink" title="文章链接唯一化"></a>文章链接唯一化</h4><p>hexo默认提供的文章链接方案是使用年/月/日/标题，也许你会数次更改文章题目或者变更文章发布时间，文章链接都会改变，不利于搜索引擎收录，也不利于分享。唯一永久链接才是更好的选择<br>(1) 安装插件</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-abbrlink <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
 
@@ -917,7 +929,7 @@ https://deserts.io/diy-a-comment-system/ -->
                 
     
                 
-                  <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo文章加密"><span class="nav-number">1.</span> <span class="nav-text">Hexo文章加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项"><span class="nav-number">1.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Valine评论"><span class="nav-number">2.</span> <span class="nav-text">Valine评论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装使用"><span class="nav-number">2.1.</span> <span class="nav-text">安装使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Leancloud配置"><span class="nav-number">2.2.</span> <span class="nav-text">Leancloud配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相册"><span class="nav-number">3.</span> <span class="nav-text">相册</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相册和视频导航栏"><span class="nav-number">3.1.</span> <span class="nav-text">相册和视频导航栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他配置"><span class="nav-number">3.2.</span> <span class="nav-text">其他配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博客相册页面"><span class="nav-number">3.3.</span> <span class="nav-text">博客相册页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片的处理"><span class="nav-number">3.4.</span> <span class="nav-text">图片的处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小功能集合"><span class="nav-number">4.</span> <span class="nav-text">小功能集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文章链接唯一化"><span class="nav-number">4.1.</span> <span class="nav-text">文章链接唯一化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+                  <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo文章加密"><span class="nav-number">1.</span> <span class="nav-text">Hexo文章加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项"><span class="nav-number">1.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Valine评论"><span class="nav-number">2.</span> <span class="nav-text">Valine评论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装使用"><span class="nav-number">2.1.</span> <span class="nav-text">安装使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Leancloud配置"><span class="nav-number">2.2.</span> <span class="nav-text">Leancloud配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo管理插件"><span class="nav-number">3.</span> <span class="nav-text">hexo管理插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo-admin"><span class="nav-number">3.1.</span> <span class="nav-text">hexo-admin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能说明"><span class="nav-number">3.2.</span> <span class="nav-text">功能说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相册"><span class="nav-number">4.</span> <span class="nav-text">相册</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相册和视频导航栏"><span class="nav-number">4.1.</span> <span class="nav-text">相册和视频导航栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他配置"><span class="nav-number">4.2.</span> <span class="nav-text">其他配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博客相册页面"><span class="nav-number">4.3.</span> <span class="nav-text">博客相册页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片的处理"><span class="nav-number">4.4.</span> <span class="nav-text">图片的处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小功能集合"><span class="nav-number">5.</span> <span class="nav-text">小功能集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文章链接唯一化"><span class="nav-number">5.1.</span> <span class="nav-text">文章链接唯一化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
                 
     
               </div>
